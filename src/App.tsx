@@ -3,34 +3,21 @@ import "./App.css";
 import Animation from "./components/Animation";
 import Logo from "./components/Logo";
 import Audio from "./components/Audio";
-import { AudioModules } from "./constants";
+import { ModuleNames } from "./constants";
 
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [soundIsOn, setSoundIsOn] = useState(false);
 
   const handleFirstClick = () => {
     if (!isInitialized) {
       setIsInitialized(true);
     }
   }
-
-  const handleToggleSound = () => {
-    setSoundIsOn(!soundIsOn);
-  }
-
   return (
-    <div className="App" onClick={handleFirstClick}>
-      <Logo
-        inGreyScale={soundIsOn}
-        toggleSound={() => handleToggleSound()}
-      />
+    <div className={`App ${isInitialized ? '' : 'cursor'}`} onClick={handleFirstClick}>
       <Animation />
-      { isInitialized ? <Audio
-        moduleName={AudioModules.WHITE_NOISE}
-        soundIsOn={soundIsOn}
-      /> : ''}
+      { isInitialized ? <Audio moduleName={ModuleNames.WHITE_NOISE}/> : '' }
     </div>
   );
 }

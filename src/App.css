@@ -24,6 +24,22 @@ img.grey {
   filter: grayscale(100%) invert(0.9) contrast(3);
 }
 
+.logo {
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  margin:auto;
+  background-color: rgba(0,0,0,0);
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
 canvas {
   position: fixed;
   bottom: 0;

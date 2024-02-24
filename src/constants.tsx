@@ -1,12 +1,8 @@
-export enum AudioModules {
+export enum ModuleNames {
   WHITE_NOISE = 'white-noise-processor'
 }
   
-export interface AudioModule {
-  soundIsOn: boolean;
-  moduleName: AudioModules;
-} 
-
-export interface AudioModuleWithContext extends AudioModule {
+export interface ModuleToLoad {
   audioContext: AudioContext;
+  moduleName: ModuleNames;
 }

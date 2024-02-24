@@ -1,12 +1,12 @@
-import { AudioModule, AudioModules } from '../constants';
+import React from 'react';
+import { ModuleNames } from '../constants';
 import ModuleNode from './ModuleNode';
 
 
-export default function Audio({soundIsOn, moduleName}: AudioModule) {
+export default function Audio({ moduleName}: {moduleName: ModuleNames}) {
   let audioContext = new AudioContext();
-
+  console.log(' - - Audio');
   return <ModuleNode
-    soundIsOn={soundIsOn}
     moduleName={moduleName}
     audioContext={audioContext}
   />

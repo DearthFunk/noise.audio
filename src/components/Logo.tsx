@@ -6,6 +6,7 @@ interface LogoArgs {
 function Logo({inGreyScale, toggleSound}: LogoArgs) {
   return (
     <button
+      className="logo"
       onClick={() => toggleSound()}
     >
       <img
@@ -13,6 +14,7 @@ function Logo({inGreyScale, toggleSound}: LogoArgs) {
         alt="Noise! Noise! Noise! Face!"
         className={inGreyScale ? "grey" : ""}
       />
+      <div>{inGreyScale ? 'oN!' : 'aughf?'}</div>
     </button>
   );
 }
