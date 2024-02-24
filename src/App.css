@@ -1,6 +1,6 @@
 body {
   align-items: center;
-  background-color: #c0c0c0;
+  background-color: #808080;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -12,12 +12,13 @@ img {
   border: 1px solid #FFFFFF;
   cursor: pointer;
   filter: none;
-  transition: transform .2s;
+  transition: 1s transform linear, 1s filter linear, 1s border-color linear;
 }
 
 img:hover {
   transform: scale(1.01);
-  filter: invert(0.1);
+  filter: invert(0.2);
+  border-color: #000000;
 }
 
 img.grey {
