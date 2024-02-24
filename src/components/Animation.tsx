@@ -35,7 +35,7 @@ export default function Animation() {
       for (var d = 3; d < oldArray.data.length; d += 4) {
         //count through only the alpha pixels
         //dim it with some feedback, I'm using .9
-        oldArray.data[d] = Math.floor(oldArray.data[d] * 0.93);
+        oldArray.data[d] = Math.floor(oldArray.data[d] * 0.5);
       }
       ctx.putImageData(oldArray, 0, 0);
 

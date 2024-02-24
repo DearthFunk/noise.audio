@@ -1,18 +1,21 @@
 import { useState } from "react";
 
-function Logo() {
-  const [soundIsOn, setSoundIsOn] = useState(false);
+interface LogoArgs {
+  soundIsOn: boolean,
+  toggleSound: (val: boolean) => void
+}
 
+function Logo({soundIsOn, toggleSound}: LogoArgs) {
   return (
     <button
       onClick={() => {
-        setSoundIsOn(!soundIsOn);
+        toggleSound(!soundIsOn);
       }}
     >
       <img
         src="face.jpeg"
         alt="Noise! Noise! Noise! Face!"
-        className={soundIsOn ? "" : "grey"}
+        className={soundIsOn ? "grey" : ""}
       />
     </button>
   );
