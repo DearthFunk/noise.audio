@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Logo from "./Logo";
+import { VolumeLevel } from "../constants";
 
 interface GainControlArgs {
     node: GainNode;
@@ -10,9 +10,9 @@ export default function GainControl({node, setSoundIsOn, soundIsOn}: GainControl
     console.log((' - - gain control'));
 
     const handleToggleSound = () => {
-        setSoundIsOn(!soundIsOn);
-        const newVolume = soundIsOn ? 0 : 0.9;
+        const newVolume = soundIsOn ? VolumeLevel.low : VolumeLevel.high;
         node.gain.setValueAtTime(newVolume, 0);
+        setSoundIsOn(!soundIsOn);
     }
     
     return <Logo

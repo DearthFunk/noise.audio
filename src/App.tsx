@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div className={`App centerScreen ${isInitialized ? '' : 'cursor'}`} onClick={userHasInteracted}>
       <Menu setModuleName={setModuleName} moduleName={moduleName}/>
-      <Animation />
+      {/* <Animation /> */}
       { isInitialized ? <ModuleNode moduleName={moduleName}/> : '' }
     </div>
   );

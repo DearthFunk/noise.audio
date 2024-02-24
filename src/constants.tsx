@@ -8,3 +8,8 @@ export interface ModuleToLoad {
   audioContext: AudioContext;
   moduleName: ModuleNames;
 }
+
+export enum VolumeLevel {
+  low = 0,
+  high = 0.9
+}

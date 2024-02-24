@@ -14,7 +14,7 @@ function Logo({inGreyScale, toggleSound}: LogoArgs) {
         alt="Noise! Noise! Noise! Face!"
         className={inGreyScale ? "grey" : ""}
       />
-      <div>{inGreyScale ? 'oN!' : 'aughf?'}</div>
+      <div>{inGreyScale ? 'oN!' : 'oFf?'}</div>
     </button>
   );
 }

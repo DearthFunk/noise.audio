@@ -55,3 +55,15 @@ canvas {
   top: 0;
   z-index: -1;
 }
+
+.menu button {
+  cursor: pointer;
+  transition: 1s transform linear;
+}
+.menu button:hover {
+  transform: scale(1.2);
+}
+.menu button.active {
+  background-color: #808080;
+  font-weight: bold;
+}
