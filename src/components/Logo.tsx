@@ -1,19 +1,17 @@
 interface LogoArgs {
-  soundIsOn: boolean,
-  toggleSound: (val: boolean) => void
+  inGreyScale: boolean,
+  toggleSound: () => void
 }
 
-function Logo({soundIsOn, toggleSound}: LogoArgs) {
+function Logo({inGreyScale, toggleSound}: LogoArgs) {
   return (
     <button
-      onClick={() => {
-        toggleSound(!soundIsOn);
-      }}
+      onClick={() => toggleSound()}
     >
       <img
         src="face.jpeg"
         alt="Noise! Noise! Noise! Face!"
-        className={soundIsOn ? "grey" : ""}
+        className={inGreyScale ? "grey" : ""}
       />
     </button>
   );
