@@ -1,22 +1,23 @@
 body {
-  display: flex;
   align-items: center;
+  background-color: #c0c0c0;
+  display: flex;
   justify-content: center;
+  height: 100vh;
   text-align: center;
   width: 100vw;
-  height: 100vh;
-  background-color: #c0c0c0;
 }
 
 img {
   border: 1px solid #FFFFFF;
+  cursor: pointer;
   filter: none;
   transition: transform .2s;
-  cursor: pointer;
 }
 
 img:hover {
   transform: scale(1.01);
+  filter: invert(0.1);
 }
 
 img.grey {
@@ -24,10 +25,15 @@ img.grey {
   filter: grayscale(100%) invert(0.9) contrast(3);
 }
 
+.centerScreen {
+  left: 50%;
+  margin-right: -50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) 
+}
+
 .logo {
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  margin:auto;
   background-color: rgba(0,0,0,0);
 }
 

@@ -6,7 +6,7 @@ interface LogoArgs {
 function Logo({inGreyScale, toggleSound}: LogoArgs) {
   return (
     <button
-      className="logo"
+      className="logo centerScreen"
       onClick={() => toggleSound()}
     >
       <img

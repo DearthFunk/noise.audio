@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Logo from "./Logo";
 
-export default function GainControl({gainNode, audioContext}: { gainNode: GainNode, audioContext: AudioContext}) {
+export default function GainControl({node}: { node: GainNode}) {
     const [soundIsOn, setSoundIsOn] = useState(false);
     
     const handleToggleSound = () => {
         setSoundIsOn(!soundIsOn);
         const newVolume = soundIsOn ? 0 : 0.9;
-        gainNode.gain.setValueAtTime(newVolume, audioContext.currentTime);
+        node.gain.setValueAtTime(newVolume, 0);
     }
     
     return <Logo

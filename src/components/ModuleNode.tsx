@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ModuleToLoad, ModuleNames } from "../constants";
+import { ModuleNames } from "../constants";
 import GainControl from "./GainControl";
 
-export default function ModuleNode({ audioContext, moduleName }: ModuleToLoad) {
+export default function ModuleNode({ moduleName}: {moduleName: ModuleNames}) {
+    const audioContext = new AudioContext();
     const [gainNode, setNode] = useState<GainNode| null>(null);
   
     useEffect(() => {
@@ -21,9 +22,9 @@ export default function ModuleNode({ audioContext, moduleName }: ModuleToLoad) {
     }, [])
   
     if (!gainNode){
-      return <div>LoaDing Audi0 Wokrl€t Nod3... . . .</div>
+      return <div className="centerScreen">LoaDing Audi0 Wokrl€t Nod3... . . .</div>
     }
 
-    return <GainControl gainNode={gainNode} audioContext={audioContext} />
+    return <GainControl node={gainNode} />
 }
   

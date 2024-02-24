@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Animation from "./components/Animation";
-import Logo from "./components/Logo";
-import Audio from "./components/Audio";
 import { ModuleNames } from "./constants";
+import ModuleNode from "./components/ModuleNode";
 
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const handleFirstClick = () => {
+  // can't initialize the audio for the moduleNode until a user interaction has occured
+  const userHasInteracted = () => {
     if (!isInitialized) {
       setIsInitialized(true);
     }
   }
+
   return (
-    <div className={`App ${isInitialized ? '' : 'cursor'}`} onClick={handleFirstClick}>
+    <div className={`App centerScreen ${isInitialized ? '' : 'cursor'}`} onClick={userHasInteracted}>
       <Animation />
-      { isInitialized ? <Audio moduleName={ModuleNames.WHITE_NOISE}/> : '' }
+      { isInitialized ? <ModuleNode moduleName={ModuleNames.WHITE_NOISE}/> : '' }
     </div>
   );
 }
