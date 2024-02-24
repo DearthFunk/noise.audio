@@ -18,7 +18,7 @@ export default function App() {
   return (
     <div className={`App centerScreen ${isInitialized ? '' : 'cursor'}`} onClick={userHasInteracted}>
       <Animation />
-      { isInitialized ? <ModuleNode moduleName={ModuleNames.WHITE_NOISE}/> : '' }
+      { isInitialized ? <ModuleNode moduleName={ModuleNames.BROWN_NOISE}/> : '' }
     </div>
   );
 }
