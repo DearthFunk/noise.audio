@@ -1,4 +1,5 @@
-class RandomNoiseProcessor extends AudioWorkletProcessor {
+// white-noise-processor.js
+class WhiteNoiseProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
     const output = outputs[0];
     output.forEach((channel) => {
@@ -9,4 +10,5 @@ class RandomNoiseProcessor extends AudioWorkletProcessor {
     return true;
   }
 }
-      
+
+registerProcessor("white-noise-processor", WhiteNoiseProcessor);

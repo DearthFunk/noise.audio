@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface LogoArgs {
   soundIsOn: boolean,
   toggleSound: (val: boolean) => void

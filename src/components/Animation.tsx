@@ -1,17 +1,6 @@
 import { useRef, useEffect } from "react";
 import useWindowSize from "./UseWindowSize";
 
-class CanvasState {
-  width = 0;
-  height = 0;
-  get halfWidth() {
-    return this.width / 2;
-  }
-  get halfHeight() {
-    return this.height / 2;
-  }
-}
-
 export default function Animation() {
   // window size ( width, height ) pass into animation for canvas resizing
   const windowSize = useWindowSize();
