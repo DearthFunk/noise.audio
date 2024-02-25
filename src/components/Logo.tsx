@@ -6,16 +6,16 @@ interface LogoArgs {
   onClick: () => void
 }
 
-export default function Logo({ className, inGreyScale, onClick }: LogoArgs) {
+export default function Logo({ className = '', inGreyScale, onClick }: LogoArgs) {
   return (
     <button
-      className={`logo centerScreen ${className ?? ''}`}
+      className={`logo centerScreen ${className}`}
       onClick={onClick}
     >
       <img
         src="face.jpeg"
         alt="Noise! Noise! Noise! Face!"
-        className={`${inGreyScale ? 'grey' : ''}`}
+        className={`${inGreyScale && 'grey'}`}
       />
     </button>
   );

@@ -1,13 +1,14 @@
 .menu button {
   background: none;
   cursor: pointer;
-  transition: 1s transform linear;
+  transition: transform 250ms ease-in-out;
 }
 
 .menu button:hover {
-  transform: scale(1.2);
+  transform: scale(1, 1.4);
 }
 
 .menu button.active {
   font-weight: bold;
 }
+

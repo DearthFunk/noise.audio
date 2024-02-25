@@ -9,7 +9,4 @@ export interface ModuleToLoad {
   moduleName: ModuleNames;
 }
 
-export enum VolumeLevel {
-  low = 0,
-  high = 0.9
-}
+export const VOLUME_LEVEL = 0.6;

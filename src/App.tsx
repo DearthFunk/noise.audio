@@ -20,7 +20,7 @@ export default function App() {
 
   if (!isInitialized) {
     return <Logo
-      className="loading"
+      className="user-activation"
       inGreyScale={false}
       onClick={userHasInteracted}
     />
@@ -28,9 +28,9 @@ export default function App() {
 
   return (
     <div className="app">
+      <Animation />
       <Menu setModuleName={setModuleName} moduleName={moduleName}/>
-      {/* <Animation /> */}
-      { isInitialized ? <ModuleNode moduleName={moduleName}/> : '' }
+      { isInitialized && <ModuleNode moduleName={moduleName}/> }
     </div>
   );
 }

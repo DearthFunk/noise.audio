@@ -1,19 +1,19 @@
 import "./Logo.css";
 import Logo from "./Logo";
-import { VolumeLevel } from "../constants";
+import { VOLUME_LEVEL } from "../constants";
 
 interface GainControlArgs {
   node: GainNode;
-  setSoundIsOn: (newVal: boolean) => void;
-  soundIsOn: boolean;
+  mute: boolean;
+  setMute: (newVal: boolean) => void;
 }
 
-export default function GainControl({node, setSoundIsOn, soundIsOn}: GainControlArgs) {
-  const handleToggleSound = () => {
-    const newVolume = soundIsOn ? VolumeLevel.low : VolumeLevel.high;
+export default function GainControl({node, mute, setMute}: GainControlArgs) {
+  const handleClick = () => {
+    const newVolume = mute ? VOLUME_LEVEL : 0;
     node.gain.setValueAtTime(newVolume, 0);
-    setSoundIsOn(!soundIsOn);
+    setMute(!mute);
   }    
 
-  return <Logo inGreyScale={soundIsOn} onClick={handleToggleSound} />
+  return <Logo className="gain-controls" inGreyScale={!mute} onClick={handleClick} />
 }

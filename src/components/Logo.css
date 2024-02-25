@@ -1,29 +1,34 @@
-img {
-  border: 1px solid #FFFFFF;
-  cursor: pointer;
-  filter: none;
-  transition: 1s transform linear, 1s filter linear, 1s border linear;
-}
-  
-img:hover {
-  border-color: #000000;
-  filter: invert(0.2);
-  transform: scale(1.01);
-}
-  
-img.grey {
-  transition: none;
-  transform: none;
-  border: 3px solid #000000;
-  filter: grayscale(100%) invert(0.9) contrast(3);
-}
-  
 .logo {
   background-color: rgba(0,0,0,0);
   opacity: 1;
   transition: opacity 2s linear;
 }
-  
-.logo.loading {
+
+img {
+  cursor: pointer;
+}
+
+.logo.user-activation {
   filter: blur(10px);
+  transition: 1s filter ease-in-out;
+}
+.logo.user-activation:hover {
+  filter: blur(10px) brightness(0.4);
+}
+
+.logo.gain-controls img {
+  border: 1px solid #FFFFFF;
+  filter: none;
+  transition: 1s transform linear, 1s filter linear, 1s border linear;
+}
+.logo.gain-controls img:hover {
+  border-color: #000000;
+  filter: invert(0.2) hue-rotate(360deg);
+  transform: scale(1.01);
+}
+.logo.gain-controls img.grey {
+  transition: none;
+  transform: scale(1.15);
+  border: 3px solid #000000;
+  filter: grayscale(100%) invert(1) contrast(3);
 }
