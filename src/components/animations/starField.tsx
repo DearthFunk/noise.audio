@@ -39,11 +39,9 @@ class Star {
     public y: number;
     public z: number;
     public pz: number;
-    public id: number;
   
     constructor(p: p5, id: number) {
         this.p = p;
-        this.id = id;
 
         this.x = this.p.random(-this.p.width, this.p.width);
         this.y = this.p.random(-this.p.height, this.p.height);
@@ -74,7 +72,7 @@ class Star {
         var px = this.p.map(this.x / this.pz, 0, 1, 0, this.p.width);
         var py = this.p.map(this.y / this.pz, 0, 1, 0, this.p.height);
         
-       this.pz = this.z;
+        this.pz = this.z;
         
         this.p.stroke(255);
         this.p.line(px, py, sx, sy);

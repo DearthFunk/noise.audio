@@ -3,7 +3,11 @@ export enum ModuleNames {
   BROWN_NOISE = 'brown-noise-processor',
   PINK_NOISE = 'pink-noise-processor'
 }
-  
+
+export enum AnimationNames {
+  STAR_FIELD
+}
+
 export interface ModuleToLoad {
   audioContext: AudioContext;
   moduleName: ModuleNames;
