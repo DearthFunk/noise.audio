@@ -4,6 +4,7 @@ import Animation from "./components/Animation";
 import { ModuleNames } from "./constants";
 import ModuleNode from "./components/ModuleNode";
 import Menu from "./components/Menu";
+import Logo from "./components/Logo";
 
 
 export default function App() {
@@ -17,8 +18,16 @@ export default function App() {
     }
   }
 
+  if (!isInitialized) {
+    return <Logo
+      className="loading"
+      inGreyScale={false}
+      onClick={userHasInteracted}
+    />
+  }
+
   return (
-    <div className={`App centerScreen ${isInitialized ? '' : 'cursor'}`} onClick={userHasInteracted}>
+    <div className="app">
       <Menu setModuleName={setModuleName} moduleName={moduleName}/>
       {/* <Animation /> */}
       { isInitialized ? <ModuleNode moduleName={moduleName}/> : '' }

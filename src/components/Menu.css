@@ -1,0 +1,13 @@
+.menu button {
+  background: none;
+  cursor: pointer;
+  transition: 1s transform linear;
+}
+
+.menu button:hover {
+  transform: scale(1.2);
+}
+
+.menu button.active {
+  font-weight: bold;
+}

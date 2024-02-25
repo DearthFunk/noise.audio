@@ -1,22 +1,22 @@
+import "./Logo.css";
+
 interface LogoArgs {
+  className?: string;
   inGreyScale: boolean,
-  toggleSound: () => void
+  onClick: () => void
 }
 
-function Logo({inGreyScale, toggleSound}: LogoArgs) {
+export default function Logo({ className, inGreyScale, onClick }: LogoArgs) {
   return (
     <button
-      className="logo centerScreen"
-      onClick={() => toggleSound()}
+      className={`logo centerScreen ${className ?? ''}`}
+      onClick={onClick}
     >
       <img
         src="face.jpeg"
         alt="Noise! Noise! Noise! Face!"
-        className={inGreyScale ? "grey" : ""}
+        className={`${inGreyScale ? 'grey' : ''}`}
       />
-      <div>{inGreyScale ? 'oN!' : 'oFf?'}</div>
     </button>
   );
 }
-
-export default Logo;
