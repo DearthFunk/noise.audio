@@ -1,5 +1,10 @@
+.menu {
+  color: #FFFFFF;
+}
+
 .menu button {
   background: none;
+  color: #FFFFFF;
   cursor: pointer;
   transition: transform 250ms ease-in-out;
 }
