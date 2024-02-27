@@ -21,5 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src", "public/modules/white-noise-processor.js"  ]
+    "src",
+    "public/modules/audio"
+  ]
 }

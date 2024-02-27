@@ -5,7 +5,8 @@ export enum ModuleNames {
 }
 
 export enum AnimationNames {
-  STAR_FIELD
+  STAR_FIELD = 'STAR_FIELD',
+  NOISE_LOOP = 'NOISE_LOOP'
 }
 
 export interface ModuleToLoad {

@@ -17,5 +17,7 @@ export default function Menu({setModuleName, moduleName, setAnimationName, anima
         <button onClick={() => setModuleName(ModuleNames.PINK_NOISE)} className={moduleName === ModuleNames.PINK_NOISE ? 'active' : ''}>PINK</button>
         <br />
         <button onClick={() => setAnimationName(AnimationNames.STAR_FIELD)} className={animationName === AnimationNames.STAR_FIELD ? 'active' : ''}>STAR</button>
+        <span className="seperator">|</span>
+        <button onClick={() => setAnimationName(AnimationNames.NOISE_LOOP)} className={animationName === AnimationNames.NOISE_LOOP ? 'active' : ''}>NOIZE</button>
     </div>
 }

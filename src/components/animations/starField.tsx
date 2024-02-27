@@ -1,5 +1,14 @@
 import p5 from "p5";
 
+// DearthFunk Copied From https://editor.p5js.org/codingtrain/sketches/1wLHIck3T
+// props to: 
+//
+// StarField
+// Daniel Shiffman
+// http://codingtra.in
+// http://patreon.com/codingtrain
+// Code for: https://youtu.be/17WoOqgXsRM
+
 export const initSketch = (p: p5) => {
     let stars: Star[] = [];
     p.preload = () => {
@@ -17,7 +26,9 @@ export const initSketch = (p: p5) => {
     }
 
     p.draw = () => {
-      let speed = p.map(p.mouseX ?? 0, 0, p.width, 0, 50);
+      const newXPos = p.mouseX ? p.mouseX : p.width / 2;
+      // newXPos exists to handle transitions in view prior to a mousemove, cause mouseX to be set
+      let speed = p.map(newXPos, 0, p.width, 0, 50);
       p.background(0);
       p.translate(p.width / 2, p.height / 2);
       for (var i = 0; i < stars.length; i++) {
@@ -29,10 +40,6 @@ export const initSketch = (p: p5) => {
 
   
 class Star {
-    // Daniel Shiffman
-    // http://codingtra.in
-    // http://patreon.com/codingtrain
-    // Code for: https://youtu.be/17WoOqgXsRM
   
     public p: p5;
     public x: number;

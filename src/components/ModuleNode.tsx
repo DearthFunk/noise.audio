@@ -9,7 +9,7 @@ export default function ModuleNode({ moduleName}: {moduleName: ModuleNames}) {
     const [audioWorkletNode, setAudioWorkletNode] = useState<AudioWorkletNode| null>(null);
 
     async function setupModule(moduleName: ModuleNames) {
-      await audioContext.audioWorklet.addModule(`modules/${moduleName}.js`);
+      await audioContext.audioWorklet.addModule(`modules/audio/${moduleName}.js`);
       let newAudioWorkletNode = new AudioWorkletNode(audioContext, moduleName);
       let newGainNode = audioContext.createGain();
       newAudioWorkletNode.connect(newGainNode);

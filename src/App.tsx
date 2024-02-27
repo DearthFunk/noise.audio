@@ -9,8 +9,8 @@ import Logo from "./components/Logo";
 
 export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [moduleName, setModuleName] = useState(ModuleNames.BROWN_NOISE);
   const [animationName, setAnimationName] = useState(AnimationNames.STAR_FIELD);
+  const [moduleName, setModuleName] = useState(ModuleNames.BROWN_NOISE);
 
   // can't initialize the audio for the moduleNode until a user interaction has occured
   const userHasInteracted = () => {
@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Animation />
+      <Animation animationName={animationName} />
       <Menu setModuleName={setModuleName} moduleName={moduleName} animationName={animationName} setAnimationName={setAnimationName}/>
       { isInitialized && <ModuleNode moduleName={moduleName}/> }
     </div>
