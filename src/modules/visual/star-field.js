@@ -1,5 +1,3 @@
-import p5 from "p5";
-
 // DearthFunk Copied From https://editor.p5js.org/codingtrain/sketches/1wLHIck3T
 // props to: 
 //
@@ -9,8 +7,8 @@ import p5 from "p5";
 // http://patreon.com/codingtrain
 // Code for: https://youtu.be/17WoOqgXsRM
 
-export const initSketch = (p: p5) => {
-    let stars: Star[] = [];
+export const initSketch = (p) => {
+    let stars = [];
     p.preload = () => {
         //load images and shaders here
     }
@@ -41,13 +39,13 @@ export const initSketch = (p: p5) => {
   
 class Star {
   
-    public p: p5;
-    public x: number;
-    public y: number;
-    public z: number;
-    public pz: number;
+    p;
+    x;
+    y;
+    z;
+    pz;
   
-    constructor(p: p5, id: number) {
+    constructor(p, id) {
         this.p = p;
 
         this.x = this.p.random(-this.p.width, this.p.width);
@@ -56,7 +54,7 @@ class Star {
         this.pz = this.z;
     }
   
-    public update(speed: number) {
+    update(speed) {
         this.z = this.z - speed;
         if (this.z < 1) {
             this.x = this.p.random(-this.p.width, this.p.width);
@@ -66,7 +64,7 @@ class Star {
         }
     }
   
-    public show() {
+    show() {
         this.p.fill(255);
         this.p.noStroke();
         

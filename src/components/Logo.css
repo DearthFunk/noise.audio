@@ -4,29 +4,20 @@
   transition: opacity 2s linear;
 }
 
-img {
+.logo img {
   cursor: pointer;
-}
-
-.logo.user-activation {
-  filter: blur(10px);
-  transition: 1s filter ease-in-out;
-}
-.logo.user-activation:hover {
-  filter: blur(10px) brightness(0.4);
-}
-
-.logo.gain-controls img {
-  border: 1px solid #FFFFFF;
+  border: 1px solid var(--logo-border);
   filter: none;
   transition: 1s transform linear, 1s filter linear, 1s border linear;
 }
-.logo.gain-controls img:hover {
-  border-color: #000000;
+
+.logo img:hover {
+  border: 3px solid var(--logo-border-hover);
   filter: invert(0.2) hue-rotate(360deg);
   transform: scale(1.01);
 }
-.logo.gain-controls img.grey {
+
+.logo img.grey {
   transition: none;
   transform: scale(1.15);
   border: 3px solid #000000;

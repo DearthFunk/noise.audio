@@ -1,6 +1,15 @@
+:root {
+  --bg-color: #808080;
+  --menu-color: white;
+  --menu-color-active: goldenrod;
+  --menu-color-seperator: yellowgreen;
+  --logo-border: green;
+  --logo-border-hover: white;
+}
+
 body {
   align-items: center;
-  background-color: #808080;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   text-align: center;
@@ -26,4 +35,34 @@ canvas {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%) 
+}
+
+.menu button {
+  background: none;
+  color: var(--menu-color);
+  cursor: pointer;
+  transition: transform 250ms ease-in-out, font-weight 250ms ease-in-out;
+}
+
+.menu button:hover {
+  transform: scale(1, 1.4);
+}
+
+.menu button.active {
+  color: var(--menu-color-active);
+}
+
+.menu ul li {
+  display: inline;
+}
+
+.menu .seperator {
+  cursor: none;
+  padding: 0 10px;
+  color: var(--menu-color-seperator);
+}
+
+.humanValidation {
+  font-weight: bold;
+  cursor: pointer;
 }

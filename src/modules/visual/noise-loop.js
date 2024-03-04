@@ -1,5 +1,3 @@
-import p5 from "p5";
-
 // DearthFunk copied from https://editor.p5js.org/codingtrain/sketches/MPqnctIGg
 // props to:
 //
@@ -8,7 +6,7 @@ import p5 from "p5";
 // https://thecodingtrain.com/CodingChallenges/137-4d-opensimplex-noise-loop
 // https://youtu.be/3_0Ax95jIrk
 
-export const initSketch = (p: p5) => {
+export const initSketch = (p) => {
     p.preload = () => {
         //load images and shaders here
     }
