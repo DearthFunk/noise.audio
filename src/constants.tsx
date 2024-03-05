@@ -4,7 +4,7 @@ import { initSketch as noiseLoopSketch } from "./modules/visual/noise-loop";
 export const VOLUME_LEVEL = 0.6;
 
 export type MenuItem = {
-  name?: string,
+  name: string,
   sketch?: typeof initSketch
 };
 

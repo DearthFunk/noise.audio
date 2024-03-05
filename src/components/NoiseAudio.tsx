@@ -16,7 +16,7 @@ export default function NoiseAudio() {
             <ul className="noise">{noiseOptions}</ul>
             <ul className="visual">{visualOptions}</ul>
         </div>
-        {/* <Audio selectedNoise={selectedNoise} /> */}
+        {!!selectedNoise.name && <><Audio selectedNoise={selectedNoise.name} /></>}
         {!!selectedVisual.sketch && <Visualizer sketch={selectedVisual.sketch} />}        
     </>
 }

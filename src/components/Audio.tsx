@@ -1,59 +1,30 @@
-export default {}
-// import { useState } from "react";
-// import Logo from "./Logo";
-// import { MenuItem, VOLUME_LEVEL } from "../constants";
 
-// const _getModuleName = (name: string) => {
-//     return `modules/audio/${name}.js`;
-// }
-// /**
-//  * TODO: look at https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletNode for idea on controlly params externally 
-//  */
+import { useState } from "react";
+import Logo from "./Logo";
+import { MenuItem, noises } from "../constants";
 
-// export default function Audio({modules, selectedNoise}:{modules: MenuItem[], selectedNoise: MenuItem}) {
-//     let [modulesLoaded, setModulesLoaded] = useState(false);
-//     let [isMuted, setIsMuted] = useState(true);
-//     let gainNode: GainNode | undefined;
+type NoiseWorkletNodes = Record<string, AudioWorkletNode>;
 
-    
-//     const connectNoise = (name: string) => {
+export default function Audio({selectedNoise}: {selectedNoise: string}) {
+    let audioContext = new AudioContext();
+    let [audioModules, setAudioModules] = useState<NoiseWorkletNodes | undefined>();
+    let [isMuted, setIsMuted] = useState(true);
 
-//     }
-//     const setupModules = async() => {
-//         // setup module on audioWorklet
-//         let promises = modules.map(({name}) => {
-//             audioContext.audioWorklet.addModule(_getModuleName(name))
-//             let audioWorkletNode = new AudioWorkletNode(audioContext, name);
-            
-//         });
-//         await Promise.all(promises);
-//         console.log('noise modules add to audio context worklet');
+    const setupAudioModules = async () => {
+        let newAudioModules: NoiseWorkletNodes = {};
+         // Add audio modules for each noise
+         await Promise.all(noises.map(async ({name}) => {
+            await audioContext.audioWorklet.addModule(`modules/audio/${name}.js`);
+            const noiseNode = new AudioWorkletNode(audioContext, `${name}-noise-processor`);
+            newAudioModules[name] = noiseNode;
+        }));
+        setAudioModules(newAudioModules);
+    }
 
-//         // setup
-//         let gainNode = audioContext.createGain();
-//         }
+    if (!audioModules) {
+        setupAudioModules();
+        return <span>'Loading...'</span>;
+    }
 
-
-//     audioWorkletNode.connect(gainNode);
-//     gainNode.gain.setValueAtTime(0, 0);
-//     setModulesLoaded(true);
-//     return gainNode;
-// }
-//     const handleLogoClick = () => { 
-//         const newIsMuted = !isMuted;
-
-//         // bypass if not ready
-//         if (!modulesLoaded || !gainNode) { return; }
-
-//         // set value at time 0 which is now
-//         const newVolume = newIsMuted ? VOLUME_LEVEL : 0;
-//         gainNode.gain.setValueAtTime(newVolume, 0);
-//         setIsMuted(newIsMuted);
-//     }
-
-//     if (!modulesLoaded) {
-//         setupModules(modules);
-//         return null;
-//     }
-//     return <Logo active={!isMuted} onClick={handleLogoClick}/>
-// }
+    return <Logo active={!isMuted} onClick={() => setIsMuted(!isMuted)} />;
+}

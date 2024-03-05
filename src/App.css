@@ -7,23 +7,6 @@
   --logo-border-hover: white;
 }
 
-body {
-  align-items: center;
-  background-color: var(--bg-color);
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-canvas {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: -1;
-}
-
 .app {
   height: 100vh;
   width: 100vw;
@@ -64,5 +47,10 @@ canvas {
 
 .humanValidation {
   font-weight: bold;
-  cursor: pointer;
+  transition-property: filter;
+  transition: 1s linear;
+}
+
+.humanValidation:hover {
+  filter: blur(2px);
 }
