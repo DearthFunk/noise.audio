@@ -1,5 +1,6 @@
 import { initSketch, initSketch as starFieldSketch } from "./modules/visual/star-field";
 import { initSketch as marchingSquaresSketch } from "./modules/visual/marching-squares";
+import { initSketch as perlinNoiseSketch } from "./modules/visual/perlin-noise";
 
 export const VOLUME_LEVEL = 0.6;
 
@@ -18,5 +19,6 @@ export const noises: MenuItem[] = [
 // where as these are imported. can import noises? todo?
 export const visuals: MenuItem[] = [
   {name: 'star-field', sketch: starFieldSketch },
-  {name: 'marching-squares', sketch: marchingSquaresSketch }
+  {name: 'marching-squares', sketch: marchingSquaresSketch },
+  {name: 'perlin-noise', sketch: perlinNoiseSketch }
 ];
