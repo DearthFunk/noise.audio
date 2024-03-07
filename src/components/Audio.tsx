@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import Logo from "./Logo";
-import { MenuItem, noises } from "../constants";
+import { noises } from "../constants";
 
 type NoiseWorkletNodes = Record<string, AudioWorkletNode>;
 

@@ -143,6 +143,8 @@ export const initSketch = (p) => {
                     case 14:
                     drawLine(c, d);
                     break;
+                    default:
+                    break;
                 }
             }
         }
