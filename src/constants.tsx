@@ -1,5 +1,5 @@
 import { initSketch, initSketch as starFieldSketch } from "./modules/visual/star-field";
-import { initSketch as noiseLoopSketch } from "./modules/visual/noise-loop";
+import { initSketch as marchingSquaresSketch } from "./modules/visual/marching-squares";
 
 export const VOLUME_LEVEL = 0.6;
 
@@ -18,5 +18,5 @@ export const noises: MenuItem[] = [
 // where as these are imported. can import noises? todo?
 export const visuals: MenuItem[] = [
   {name: 'star-field', sketch: starFieldSketch },
-  {name: 'nosie-loop', sketch: noiseLoopSketch }
+  {name: 'marching-squares', sketch: marchingSquaresSketch }
 ];
