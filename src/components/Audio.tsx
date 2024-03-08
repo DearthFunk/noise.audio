@@ -1,30 +1,29 @@
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
-import { noises } from "../constants";
-
-type NoiseWorkletNodes = Record<string, AudioWorkletNode>;
+import AudioControls from "./AudioControls";
 
 export default function Audio({selectedNoise}: {selectedNoise: string}) {
-    let audioContext = new AudioContext();
-    let [audioModules, setAudioModules] = useState<NoiseWorkletNodes | undefined>();
     let [isMuted, setIsMuted] = useState(true);
+    const audioRef = useRef<AudioControls | null>(null);
 
-    const setupAudioModules = async () => {
-        let newAudioModules: NoiseWorkletNodes = {};
-         // Add audio modules for each noise
-         await Promise.all(noises.map(async ({name}) => {
-            await audioContext.audioWorklet.addModule(`modules/audio/${name}.js`);
-            const noiseNode = new AudioWorkletNode(audioContext, `${name}-noise-processor`);
-            newAudioModules[name] = noiseNode;
-        }));
-        setAudioModules(newAudioModules);
-    }
+    useEffect(() => {
+        if (!audioRef.current) {
+            audioRef.current = new AudioControls(selectedNoise);
+        }
+    }, []);
 
-    if (!audioModules) {
-        setupAudioModules();
-        return <span>'Loading...'</span>;
-    }
+    useEffect(() => {
+        if (audioRef.current?.isLoaded) {
+            audioRef.current.selectNoise(selectedNoise);
+        }
+    }, [selectedNoise]);
+
+    useEffect(() => {
+        if (audioRef.current?.isLoaded) {
+            audioRef.current.mute(isMuted);
+        }
+    }, [isMuted]);
 
     return <Logo active={!isMuted} onClick={() => setIsMuted(!isMuted)} />;
 }
