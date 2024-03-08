@@ -24,7 +24,11 @@ export const initSketch = (p) => {
     }
 
     p.draw = () => {
-      const newXPos = p.mouseX ? p.mouseX : p.width / 2;
+      let newXPos = Math.floor(Math.sqrt(
+        Math.pow(p.mouseX - (window.innerWidth/2), 2) + 
+        Math.pow(p.mouseY - (window.innerHeight/2), 2)
+      ));
+
       // newXPos exists to handle transitions in view prior to a mousemove, cause mouseX to be set
       let speed = p.map(newXPos, 0, p.width, 0, 50);
       p.background(0);

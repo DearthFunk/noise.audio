@@ -30,7 +30,12 @@ export const initSketch = (p) => {
         p.strokeWeight(15);
         p.noFill();
         p.beginShape();
-        let noiseMax = p.map(p.mouseX, 0, p.width, 0, 3); // slider.value(); // createSlider(0, 10, 3, 0.1);
+        let distanceFromCenter = Math.floor(Math.sqrt(
+            Math.pow(p.mouseX - (window.innerWidth/2), 2) + 
+            Math.pow(p.mouseY - (window.innerHeight/2), 2)
+        ));
+        // createSlider(0, 10, 3, 0.1);
+        let noiseMax = p.map(distanceFromCenter, 0, window.innerHeight/2, 0, 5);
         for (let a = 0; a < p.TWO_PI; a += p.radians(15)) {
             let xoff = p.map(p.cos(a + phase), -1, 1, 0, noiseMax);
             let yoff = p.map(p.sin(a + phase), -1, 1, 0, noiseMax);
