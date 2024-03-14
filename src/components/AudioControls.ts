@@ -7,7 +7,7 @@ export default class AudioControls {
     private noiseNodes: Record<string, AudioWorkletNode> = {};
     private activeNode: AudioWorkletNode | undefined;
 
-    constructor(initialNoise?: string) {
+    constructor(initialNoise: string) {
         this.ctx = new AudioContext();
         this.gainNode = this.ctx.createGain();
         this.gainNode.gain.setValueAtTime(0, 0);
@@ -15,27 +15,29 @@ export default class AudioControls {
         this.loadModules(initialNoise);
     }
 
-    private async loadModules(initialNoise?: string) {
+    private async loadModules(initialNoise: string) {
         await Promise.all(noises.map(async ({name}) => {
             await this.ctx.audioWorklet.addModule(`modules/audio/${name}.js`);
             const noiseNode = new AudioWorkletNode(this.ctx, `${name}-noise-processor`);
             this.noiseNodes[name] = noiseNode;
         }));
         this.isLoaded = true;
-        if (initialNoise) {
-            this.selectNoise(initialNoise);
-        }
+        this.selectNoise(initialNoise);
+        console.log(' - - modulesloaded: selecting', initialNoise);
     }
 
-    public selectNoise(selectNoise: string) {
+    public selectNoise(selectedNoise: string) {
         if (!this.isLoaded) { return; }
         this.activeNode?.disconnect();
-        this.activeNode = this.noiseNodes[selectNoise];
+        this.activeNode = this.noiseNodes[selectedNoise];
         this.activeNode.connect(this.gainNode);
+        console.log(' - - selectnoise: ', selectedNoise)
     }
 
     public mute(shouldMute: boolean) {
         if (!this.isLoaded) { return; }
-        this.gainNode.gain.setValueAtTime(shouldMute ? 0 : 0.5, 0);
+        const newVolume = shouldMute ? 0 : 0.8;
+        this.gainNode.gain.setValueAtTime(newVolume, 0);
+        console.log(' - - newvolume: ', newVolume);
     }
 }
