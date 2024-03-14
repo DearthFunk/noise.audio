@@ -11,7 +11,6 @@ let phase = 0;
 let zoff = 0;
 
 export const initSketch = (p) => {
-    let stars = [];
     p.preload = () => {
         //load images and shaders here
     }

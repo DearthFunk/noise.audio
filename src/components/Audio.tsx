@@ -4,13 +4,7 @@ import AudioControls from "./AudioControls";
 
 export default function Audio({selectedNoise}: {selectedNoise: string}) {
     let [isMuted, setIsMuted] = useState(true);
-    const audioRef = useRef<AudioControls | null>(null);
-
-    useEffect(() => {
-        if (!audioRef.current) {
-            audioRef.current = new AudioControls(selectedNoise);
-        }
-    }, []);
+    const audioRef = useRef<AudioControls>(new AudioControls(selectedNoise));
 
     useEffect(() => {
         if (audioRef.current?.isLoaded) {
