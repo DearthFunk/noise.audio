@@ -1,5 +1,10 @@
 // ref: https://noisehack.com/generate-noise-web-audio-api/
 
+/**
+ * Also known as Red Noise.
+ * Features even more energy concentrated in the lower frequencies than pink noise, producing a deep, rumbling sound like thunder. It is often used for relaxation, sleep, and reducing anxiety. 
+ */
+
 class BrownNoiseProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
     const output = outputs[0];

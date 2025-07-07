@@ -1,5 +1,9 @@
 // ref: https://noisehack.com/generate-noise-web-audio-api/
 
+/**
+ *  Has a balance of frequencies with more energy in the lower frequencies than white noise, decreasing by 3dB per octave. It is often described as a smooth, calming sound and is frequently used in audio testing and sound masking.
+ */
+
 class PinkNoiseProcessor extends AudioWorkletProcessor {
   process(inputs, outputs, parameters) {
     const output = outputs[0];

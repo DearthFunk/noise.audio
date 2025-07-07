@@ -2,14 +2,14 @@ import Audio from "./Audio";
 import Visualizer from "./Visualizer";
 import { useState } from "react";
 import { visuals, noises } from "../constants";
-import { _generateMenuOptions } from "./MenuItem";
+import { _generateNoiseMenuOptions, _generateVisualMenuOptions } from "./MenuItem";
 
 export default function NoiseAudio() {
     let [selectedVisual, setSelectedVisual] = useState(visuals[0]);
     let [selectedNoise, setSelectedNoise] = useState(noises[2]);
 
-    const noiseOptions = _generateMenuOptions(noises, setSelectedNoise, selectedNoise);
-    const visualOptions = _generateMenuOptions(visuals, setSelectedVisual, selectedVisual);
+    const noiseOptions = _generateNoiseMenuOptions(noises, setSelectedNoise, selectedNoise);
+    const visualOptions = _generateVisualMenuOptions(visuals, setSelectedVisual, selectedVisual);
 
     return <>
         <div className="menu">
