@@ -48,6 +48,7 @@ class Star {
     y;
     z;
     pz;
+    color;
   
     constructor(p, id) {
         this.p = p;
@@ -56,6 +57,13 @@ class Star {
         this.y = this.p.random(-this.p.height, this.p.height);
         this.z = this.p.random(this.p.width);
         this.pz = this.z;
+        
+        // Generate random color
+        this.color = this.p.color(
+            this.p.random(100, 255), // Red
+            this.p.random(100, 255), // Green
+            this.p.random(100, 255)  // Blue
+        );
     }
   
     update(speed) {
@@ -65,11 +73,18 @@ class Star {
             this.y = this.p.random(-this.p.height, this.p.height);
             this.z = this.p.random(this.p.width);
             this.pz = this.z;
+            
+            // Generate new random color when star resets
+            this.color = this.p.color(
+                this.p.random(100, 255), // Red
+                this.p.random(100, 255), // Green
+                this.p.random(100, 255)  // Blue
+            );
         }
     }
   
     show() {
-        this.p.fill(255);
+        this.p.fill(this.color);
         this.p.noStroke();
         
         var sx = this.p.map(this.x / this.z, 0, 1, 0, this.p.width);
@@ -83,7 +98,7 @@ class Star {
         
         this.pz = this.z;
         
-        this.p.stroke(255);
+        this.p.stroke(this.color);
         this.p.line(px, py, sx, sy);
     }
 }

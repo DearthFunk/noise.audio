@@ -47,13 +47,26 @@ export const initSketch = (p) => {
     }
 
     p.draw = () => {
-        p.background(50);
+        p.background(0);
         let xoff = 0;
         for (let i = 0; i < cols; i++) {
             xoff += increment;
             let yoff = 0;
             for (let j = 0; j < rows; j++) {
-                field[i][j] = p.float(noise.noise3D(xoff, yoff, zoff));
+                // Calculate distance from current grid point to mouse
+                let gridX = i * rez;
+                let gridY = j * rez;
+                let distToMouse = p.dist(gridX, gridY, p.mouseX, p.mouseY);
+                
+                // Modify zoff based on distance to mouse (speed increases toward center)
+                let localZoff = zoff;
+                if (distToMouse <= 100) { // Within the 100 pixel radius
+                    // Speed multiplier: 1 at edge (100px away), up to 5 at center (0px away)
+                    let speedMultiplier = p.map(distToMouse, 100, 0, 1, 2);
+                    localZoff *= speedMultiplier;
+                }
+                
+                field[i][j] = p.float(noise.noise3D(xoff, yoff, localZoff));
                 yoff += increment;
             }
         }

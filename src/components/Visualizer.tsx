@@ -18,5 +18,5 @@ export default function Visualizer({sketch}: {sketch: (p:any) => void}) {
     return null;
   }
 
-  return <div className="mySketch" ref={sketchRef} />
+  return <div className="visualizer-sketch" ref={sketchRef} />
 }

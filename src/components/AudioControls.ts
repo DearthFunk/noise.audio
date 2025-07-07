@@ -30,7 +30,6 @@ export default class AudioControls {
         }));
         this.isLoaded = true;
         this.selectNoise(initialNoise);
-        console.log(' - - modulesloaded: selecting', initialNoise);
     }
 
     public selectNoise(selectedNoise: string) {
@@ -38,13 +37,11 @@ export default class AudioControls {
         this.activeNode?.disconnect();
         this.activeNode = this.noiseNodes[selectedNoise];
         this.activeNode.connect(this.gainNode);
-        console.log(' - - selectnoise: ', selectedNoise)
     }
 
     public mute(shouldMute: boolean) {
         if (!this.isLoaded) { return; }
         const newVolume = shouldMute ? 0 : 0.5;
         this.gainNode.gain.setValueAtTime(newVolume, 0);
-        console.log(' - - newvolume: ', newVolume);
     }
 }
