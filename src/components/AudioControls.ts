@@ -1,5 +1,11 @@
 import { noises } from "../constants";
 
+// Use dynamic imports for AudioWorklet processors
+const getNoiseUrl = async (name: string): Promise<string> => {
+    const module = await import(`../modules/audio/${name}.js`);
+    return module.default;
+};
+
 export default class AudioControls {
     public isLoaded: boolean = false;
     private ctx: AudioContext;
@@ -17,7 +23,8 @@ export default class AudioControls {
 
     private async loadModules(initialNoise: string) {
         await Promise.all(noises.map(async ({name}) => {
-            await this.ctx.audioWorklet.addModule(`modules/audio/${name}.js`);
+            const noiseUrl = await getNoiseUrl(name);
+            await this.ctx.audioWorklet.addModule(noiseUrl);
             const noiseNode = new AudioWorkletNode(this.ctx, `${name}-noise-processor`);
             this.noiseNodes[name] = noiseNode;
         }));
@@ -36,7 +43,7 @@ export default class AudioControls {
 
     public mute(shouldMute: boolean) {
         if (!this.isLoaded) { return; }
-        const newVolume = shouldMute ? 0 : 0.8;
+        const newVolume = shouldMute ? 0 : 0.5;
         this.gainNode.gain.setValueAtTime(newVolume, 0);
         console.log(' - - newvolume: ', newVolume);
     }

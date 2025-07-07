@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles.css";
 import NoiseAudio from "./components/NoiseAudio";
 
 export default function App() {

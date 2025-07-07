@@ -8,7 +8,7 @@
 // https://youtu.be/0ZONMNUKTfU
 // p5 port: https://editor.p5js.org/codingtrain/sketches/18cjVoAX1
 
-import OpenSimplexNoise from './OpenSimplexNoise';
+import OpenSimplexNoise from './OpenSimplexNoise.js';
 
 export const initSketch = (p) => {
     let field = [];

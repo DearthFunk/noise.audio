@@ -1,6 +1,6 @@
-import { initSketch, initSketch as starFieldSketch } from "./modules/visual/star-field";
-import { initSketch as marchingSquaresSketch } from "./modules/visual/marching-squares";
-import { initSketch as perlinNoiseSketch } from "./modules/visual/perlin-noise";
+import { initSketch, initSketch as starFieldSketch } from "./modules/visual/star-field.js";
+import { initSketch as marchingSquaresSketch } from "./modules/visual/marching-squares.js";
+import { initSketch as perlinNoiseSketch } from "./modules/visual/perlin-noise.js";
 
 export const VOLUME_LEVEL = 0.6;
 

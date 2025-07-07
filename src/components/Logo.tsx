@@ -1,4 +1,5 @@
 import "./Logo.css";
+import faceImage from "../face.jpeg";
 
 interface LogoArgs {
   active: boolean,
@@ -12,7 +13,7 @@ export default function Logo({ active, onClick }: LogoArgs) {
       onClick={onClick}
     >
       <img
-        src="face.jpeg"
+        src={faceImage}
         alt="Noise! Noise! Noise! Face!"
         className={active ? 'grey': ''}
       />
