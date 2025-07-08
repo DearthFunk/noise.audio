@@ -12,14 +12,15 @@ import OpenSimplexNoise from './OpenSimplexNoise.js';
 
 export const initSketch = (p) => {
     let field = [];
-    let rez = 5;
+    let rez = 10;
     let cols, rows;
-    let increment = 0.1;
+    let increment = 0.2;
     let zoff = 0;
     let noise;
+    let pg; // Graphics buffer for trailing effect
 
     function drawLine(v1, v2) {
-        p.line(v1.x, v1.y, v2.x, v2.y);
+        pg.line(v1.x, v1.y, v2.x, v2.y);
     }
     function getState(a, b, c, d) {
         return a * 8 + b * 4 + c * 2 + d * 1;
@@ -30,10 +31,12 @@ export const initSketch = (p) => {
     }
     p.windowResized = () => {
         p.resizeCanvas(window.innerWidth, window.innerHeight);
+        pg = p.createGraphics(window.innerWidth, window.innerHeight);
     }
     p.setup = () => {
         //setup canvas and init values here
         p.createCanvas(window.innerWidth, window.innerHeight);
+        pg = p.createGraphics(window.innerWidth, window.innerHeight);
         noise = new OpenSimplexNoise(Date.now());
         cols = 1 + window.innerWidth / rez;
         rows = 1 + window.innerHeight / rez;
@@ -47,7 +50,11 @@ export const initSketch = (p) => {
     }
 
     p.draw = () => {
-        p.background(0);
+        // Apply fading effect to the graphics buffer first
+        pg.fill(0, 0, 0, 255 * 0.02); // Black with 2% opacity for fading
+        pg.noStroke();
+        pg.rect(0, 0, window.innerWidth, window.innerHeight);
+        
         let xoff = 0;
         for (let i = 0; i < cols; i++) {
             xoff += increment;
@@ -58,11 +65,21 @@ export const initSketch = (p) => {
                 let gridY = j * rez;
                 let distToMouse = p.dist(gridX, gridY, p.mouseX, p.mouseY);
                 
-                // Modify zoff based on distance to mouse (speed increases toward center)
+                // Create radial magnifying glass effect with smooth falloff
                 let localZoff = zoff;
-                if (distToMouse <= 100) { // Within the 100 pixel radius
-                    // Speed multiplier: 1 at edge (100px away), up to 5 at center (0px away)
-                    let speedMultiplier = p.map(distToMouse, 100, 0, 1, 2);
+                let radius = 300; // Effect radius in pixels
+                
+                if (distToMouse <= radius) {
+                    // Normalize distance (0 at center, 1 at edge)
+                    let normalizedDist = distToMouse / radius;
+                    
+                    // Create smooth falloff using cosine curve for natural feel
+                    let falloff = Math.cos(normalizedDist * Math.PI * 0.5);
+                    
+                    // Speed multiplier: 1 (normal) at edge, down to 0.1 (very slow) at center
+                    let minSpeed = 0.1;
+                    let speedMultiplier = 1 - (falloff * (1 - minSpeed));
+                    
                     localZoff *= speedMultiplier;
                 }
                 
@@ -109,8 +126,8 @@ export const initSketch = (p) => {
                 d.x = x;
                 d.y = p.lerp(y, y + rez, amt);
 
-                p.stroke(255);
-                p.strokeWeight(2);
+                pg.stroke(255);
+                pg.strokeWeight(2);
                 switch (state) {
                     case 1:
                     drawLine(c, d);
@@ -161,5 +178,9 @@ export const initSketch = (p) => {
                 }
             }
         }
+        
+        // Clear main canvas and draw the graphics buffer
+        p.background(0);
+        p.image(pg, 0, 0);
     }
 };
